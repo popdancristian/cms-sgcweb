@@ -1,0 +1,26 @@
+<fieldset>
+<legend>{$a_form_search.title}</legend>
+<form method="GET" action="{if (empty($a_form_search.actionscript))}index.php{else}{$a_form_search.actionscript}{/if}" name="{$a_form_search.name}">
+<input type="hidden" name="page" value="{$page}">
+<table border="0" cellspacing="1" cellpadding="1">
+ <tr>
+{foreach from=$a_form_search.row key=str_key item=a_row}
+ {if ($a_row.type=='textbox')}
+  <td class="td">{$a_row.caption}:</td>
+  <td class="td"><input type="text" name="search[{$str_key}]" id="search_{$str_key}" style="width:{if (!empty($a_row.width))}{$a_row.width}{else}150{/if}px;" value="{if (isset($a_search[$str_key]))}{$a_search[$str_key]}{/if}">
+ {elseif ($a_row.type=='select')}
+  <td class="td">{$a_row.caption}:</td>
+  <td class="td">
+   <select name="search[{$str_key}]" id="search_{$str_key}"> 
+   {foreach from=$a_row.a_value key=str_value item=str_caption}<option value="{$str_value}"{if ((isset($a_search[$str_key])) and ($a_search[$str_key]==$str_value))} selected="selected"{/if}>{$str_caption}</option>{/foreach}
+   </select>
+{elseif ($a_row.type=='date')}
+  <td class="td">{$a_row.caption}:</td>
+  <td class="td"><input type="text" value="{if (isset($a_search[$str_key]))}{$a_search[$str_key]}{/if}" readonly name="search[{$str_key}]" id="search_{$str_key}"><input type="button" value="..." onclick="displayCalendar(document.forms[0].search_{$str_key},'yyyy-mm-dd',this)"></td>
+ {/if}
+{/foreach}
+<td><button type="submit">{$a_form_search.button}</button></td>
+</tr>
+</table>
+</form>
+</fieldset>

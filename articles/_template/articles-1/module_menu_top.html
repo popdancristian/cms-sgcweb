@@ -1,0 +1,13 @@
+{strip}
+<div id="menu">
+<ul>
+    {assign var="i" value="1"}
+	{foreach from=$a_page item=a_item}
+	 {if (in_array('top',$a_item.a_menu))}
+		<li><a href="{$a_item.url}" title="{$a_item.menu} {$_CONFIG.title}" {if ($page==$str_item)} class="current"{/if}>{$a_item.menu}</a></li>{if ($i<count($a_menu.top))}<li class="separator"></li>{/if}
+		{assign var="i" value="`$i+1`"}
+     {/if}
+	{/foreach}
+</ul>
+</div>
+{/strip}

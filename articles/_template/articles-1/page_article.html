@@ -1,0 +1,52 @@
+<div class="description">
+    <h1>{$meta_title}</h1>
+	<div id="raty" style="margin-left:10px;">
+		<div id="click"></div>
+		{literal}
+		  <script type="text/javascript">
+					$(function() {
+						$('#click').raty({
+							click: function(score, evt) 
+							{	  							  
+							   $.ajax({url: '{/literal}{$_DOMAIN.url}{literal}/index.php',data:'page=article&action=raty&articleid={/literal}{$a_article.articleid}{literal}&raty='+score+'&submit=1',success: function(responseText){},error: function(){}});
+							   $('#raty').html('<b>Mutumim!</b>');	
+							},
+							path: '{/literal}{$smarty.const.URL_SITE}{literal}/_js/img/',
+							starOff:    'star-off-big.png',
+							starOn:     'star-on-big.png',
+							width: 200, 
+							number: 5
+						});
+
+					});
+			</script>
+		{/literal}
+	</div>
+	{$a_article.content}
+	<p class="post-footer align-right">{foreach from=$a_article.a_tag item=str_tag} {$str_tag} {/foreach}</p>
+
+{if (!empty($a_article_images))}
+{foreach from=$a_article_images item=a_image}
+ <div class="gallery"><a rel="pimage" href="{$a_image.imageurlb}" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_article.title}"><img src="{$a_image.imageurl}" width="130" height="97" border="0" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_article.title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}" alt="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_article.title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}"/></a></div>
+{/foreach}
+<div class="clear"></div>
+{/if}
+{if (!empty($a_article_prev))}
+<h3><a href="{$a_article_prev.url}" title="{$a_article_prev.fulltitle}">{$a_article_prev.fulltitle}</a></h1>
+      <p>{$a_article_prev.description}</p>
+	<p class="post-footer align-right">{foreach from=$a_article_prev.a_tag item=str_tag} <a href="{$a_article_prev.url}" title="{$str_tag}">{$str_tag}</a>{/foreach}</p>
+{/if}
+<br/>
+{if (!empty($a_article_next))}
+<h3><a href="{$a_article_next.url}" title="{$a_article_next.fulltitle}">{$a_article_next.fulltitle}</a></h1>
+      <p>{$a_article_next.description}</p>
+	<p class="post-footer align-right">{foreach from=$a_article_next.a_tag item=str_tag} <a href="{$a_article_next.url}" title="{$str_tag}">{$str_tag}</a>{/foreach}</p>
+{/if}
+{if (!empty($a_gallery_best[$a_article.categoryid]))}
+{foreach from=$a_gallery_best[$a_article.categoryid] item=a_image}
+ <div class="gallery"><a rel="pimage" href="{$a_image.imageurlb}" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_category[$a_article.categoryid].title}"><img src="{$a_image.imageurl}" border="0" width="130" height="97" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_category[$a_article.categoryid].title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}" alt="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_category[$a_article.categoryid].title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}"/></a></div>
+{/foreach}
+<div class="clear"></div>
+<p class="post-footer align-right"><a href="{$a_category[$a_article.categoryid].url_gallery}" title="{$_l.gallery} {$_CONFIG.title_separator} {$a_category[$a_article.categoryid].fulltitle}">{$_l.gallery} {$a_category[$a_article.categoryid].title}</a></p>
+{/if}
+</div>

@@ -1,0 +1,9 @@
+{strip}
+<div class="category">
+<ul>
+  {foreach from=$a_category item=a_item}
+   <li><a href="{$a_item.url_gallery}" title="{$_l.gallery} {$a_item.fulltitle}">{$a_item.title}</a></li>
+  {/foreach}
+</ul>
+</div>
+{/strip}

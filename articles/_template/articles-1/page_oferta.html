@@ -1,0 +1,12 @@
+<h1>{$a_page[$page].title}</h1>
+<div class="description">
+{$a_page[$page].content}
+</div>
+<div class="description">
+<p>
+<a href="{$smarty.const.URL_SITE}/_file/file/oferta-generala.pdf" title="{$_CONFIG.title} Oferta Generala" target="_blank"><b>Oferta Generala</b></a><br/>
+{foreach from=$a_category item=a_item}
+<a href="{$smarty.const.URL_SITE}/_file/file/{$a_item.directory}.pdf" title="{$a_item.fulltitle}" target="_blank"><b>{$a_item.title}</b></a><br/>
+{/foreach}
+</p>
+</div>

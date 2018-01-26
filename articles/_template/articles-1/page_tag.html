@@ -1,0 +1,10 @@
+<div class="description">
+<h1>{$a_page[$page].menu}</h1>
+{$a_page[$page].content}
+</div>
+<div class="description">
+{foreach from=$a_tag item=a_item}
+ <a href="{$a_item.url}" title="{$a_item.name}">{$a_item.name} ({$a_item.total})</a><br/>
+{/foreach}
+</p>
+</div>

@@ -1,0 +1,18 @@
+<div class="description">
+<h1>{$a_category[$categoryid].fulltitle}</h1>
+ {$a_category[$categoryid].content}
+ <p class="post-footer align-right">{foreach from=$a_category[$categoryid].a_tag item=str_tag} {$str_tag} {/foreach}</p>
+</div>
+{if (!empty($a_gallery_best[$categoryid]))}
+{foreach from=$a_gallery_best[$categoryid] item=a_image}
+<div class="gallery"><a rel="pimage" href="{$a_image.imageurlb}" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_category[$categoryid].title}"><img src="{$a_image.imageurl}" border="0" width="130" height="97" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_category[$categoryid].title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}" alt="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_category[$categoryid].title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}"/></a></div>
+{/foreach}
+{/if}
+<div class="clear"></div>
+<p class="post-footer align-right"><a href="{$smarty.const.URL_SITE}/_file/file/{$a_category[$categoryid].directory}.pdf" title="Oferta {$a_item.fulltitle}" target="_blank">Oferta {$a_category[$categoryid].title}</a>&nbsp;<a href="{$a_category[$categoryid].url_gallery}" title="{$_l.gallery} {$a_category[$categoryid].fulltitle}">{$_l.gallery} {$a_category[$categoryid].title}</a></p>
+
+{assign var='navigator_title' value=`$a_category[$categoryid].fulltitle`}
+{include file="module_navigator.html"}
+{include file="module_article.html"}
+{include file="module_navigator.html"}
+{if (!empty($a_category[$categoryid].footer))}<div class="description"><p>{$a_category[$categoryid].footer}</p></div>{/if}

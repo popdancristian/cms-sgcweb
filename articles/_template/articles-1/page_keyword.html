@@ -1,0 +1,16 @@
+<div class="description">
+<h1>{$a_page[$page].menu}{if (isset($letter))} {$_CONFIG.title_separator} {$letter|upper}{/if}</h1>
+{$a_page[$page].content}
+</div>
+<div class="description">
+<div class="navigator">{foreach from=$a_letter item=a_item}<a href="{$a_item.url}"{if (isset($letter) and ($a_item.name==$letter|upper))} class="current"{/if}>&nbsp;{$a_item.name}&nbsp;</a>&nbsp;{if ($a_item.name=='9')}</div><div class="navigator">{/if}{/foreach}</p></div>
+</div>
+{if (!empty($a_keyword))}
+<div class="description">
+<p>
+{foreach from=$a_keyword item=a_item}
+ <a href="{$a_item.url}" title="{$a_item.name}">{$a_item.name}</a><br/>
+{/foreach}
+</p>
+</div>
+{/if}

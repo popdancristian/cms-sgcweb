@@ -1,0 +1,8 @@
+<div class="description">
+<h1>{$a_page[$page].menu}</h1>
+{$a_page[$page].content}
+<br/>
+<p>{$a_page[$page].footer}</p>
+<br/>
+{$a_page[$page].header}
+</div>

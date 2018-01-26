@@ -1,0 +1,33 @@
+RewriteEngine on
+
+RewriteRule   ^(.*)_g_([0-9]*).html$ index.php?page=gallery&category=$1&categoryid=$2 [L]
+RewriteRule   ^(.*)_q_([0-9]*).html$ index.php?page=faq&faq=$1&faqid=$2 [L]
+RewriteRule   ^(.*)_c_([0-9]*).html$ index.php?page=category&category=$1&categoryid=$2 [L]
+RewriteRule   ^(.*)_c_([0-9]*)_p_([0-9]*).html$ index.php?page=category&category=$1&categoryid=$2&start=$3 [L]
+RewriteRule   ^(.*)_m_([0-9]*).html index.php?page=popular&category=$1&categoryid=$2 [L]
+RewriteRule   ^(.*)_m_([0-9]*)_p_([0-9]*).html index.php?page=popular&category=$1&categoryid=$2&start=$3 [L]
+RewriteRule   ^(.*)_l_([0-9]*).html index.php?page=latest&category=$1&categoryid=$2 [L]
+RewriteRule   ^(.*)_l_([0-9]*)_p_([0-9]*).html index.php?page=latest&category=$1&categoryid=$2&start=$3 [L]
+RewriteRule   ^(.*)_a_([0-9]*).html$ index.php?page=article&name=$1&articleid=$2 [L]
+RewriteRule   ^(.*)_k_([0-9]*).html$ index.php?page=search&keyword=$1&keywordid=$2 [L]
+RewriteRule   ^(.*)_k_([0-9]*)_p_([0-9]*).html$ index.php?page=search&keyword=$1&keywordid=$2&start=$3 [L]
+RewriteRule   ^(.*)_t_([0-9]*).html$ index.php?page=search&tag=$1&tagid=$2 [L]
+RewriteRule   ^(.*)_t_([0-9]*)_p_([0-9]*).html$ index.php?page=search&tag=$1&tagid=$2&start=$3 [L]
+RewriteRule   cautari_([a-z]|[0-9]).html index.php?page=cautari&letter=$1 [L]
+RewriteRule   hartasite_(.*)_([0-9]*).html index.php?page=hartasite&category=$1&categoryid=$2 [L]
+RewriteRule   toateprodusele.html index.php?page=toateprodusele [L]
+RewriteRule   toateprodusele_([a-z]).html index.php?page=toateprodusele&letter=$1 [L]
+RewriteRule   toateprodusele_([a-z])_p_([0-9]*).html index.php?page=toateprodusele&letter=$1&start=$2 [L]
+RewriteRule   ^([a-z]*).html$ index.php?page=$1 [L]
+RewriteRule   ^([a-z]*)_p_([0-9]*).html$ index.php?page=$1&start=$2 [L]
+
+<ifModule mod_headers.c>
+# YEAR
+<filesMatch "\.(ico|gif|jpg|jpeg|png|flv|pdf)$">
+  Header set Cache-Control "max-age=29030400"
+</filesMatch>
+# WEEK
+<filesMatch "\.(js|css|swf)$">
+  Header set Cache-Control "max-age=604800"
+</filesMatch>
+</ifModule>

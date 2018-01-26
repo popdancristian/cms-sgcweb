@@ -1,0 +1,5 @@
+<?php /* Smarty version 2.6.22, created on 2018-01-26 06:35:43
+         compiled from module_category.html */ ?>
+<?php echo ''; ?><?php if (( count ( $this->_tpl_vars['a_category'] ) > 0 )): ?><?php echo '<div class="category"><ul>'; ?><?php $_from = $this->_tpl_vars['a_category']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['i_key'] => $this->_tpl_vars['a_item']):
+?><?php echo '<li><a href="'; ?><?php echo $this->_tpl_vars['a_item']['url']; ?><?php echo '" title="'; ?><?php echo $this->_tpl_vars['a_item']['title']; ?><?php echo ' '; ?><?php echo $this->_tpl_vars['_CONFIG']['title']; ?><?php echo '"'; ?><?php if (( isset ( $this->_tpl_vars['i_categoryid'] ) && ( $this->_tpl_vars['i_categoryid'] == $this->_tpl_vars['i_key'] ) )): ?><?php echo ' class="current"'; ?><?php endif; ?><?php echo '>'; ?><?php echo $this->_tpl_vars['a_item']['title']; ?><?php echo '</a></li>'; ?><?php endforeach; endif; unset($_from); ?><?php echo '</ul></div>'; ?><?php endif; ?><?php echo ''; ?>

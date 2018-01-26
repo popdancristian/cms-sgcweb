@@ -1,0 +1,52 @@
+{strip}
+<div class="description">
+  <h1>{$a_page[$page].menu}</h1>
+  <p>
+  {foreach from=$a_page key=i_key item=a_item}
+	  <a href="{$a_item.url}"  title="{$a_item.menu}"><b>{$a_item.menu}</b></a><br/>
+  {/foreach} 
+  </p>
+</div>
+
+<div class="description">
+<h1>{$_l.categoriesarticles}</h1>
+<p>
+{foreach from=$a_category item=a_item}
+ <a href="{$a_item.url_sitemap}" title="{$a_item.fulltitle}">{$a_item.title}</a><br/>
+{/foreach}
+</p>
+</div>
+
+{if (!empty($a_category_article))}
+<div class="description">
+<h1>{$a_category[$categoryid].fulltitle}</h1>
+<p>
+	{foreach from=$a_category_article item=a_item}
+		<a href="{$a_item.url}" title="{$a_item.title}">{$a_item.title}</a><br/>
+	{/foreach}
+</p>
+</div>
+{/if}
+
+<div class="description">
+<h1>{$_l.gallery}</h1>
+<p>
+{foreach from=$a_category item=a_item}
+ <a href="{$a_item.url_gallery}" title="{$a_item.fulltitle}">{$a_item.title}</a><br/>
+{/foreach}
+</p>
+</div>
+<div class="description">
+<h1>{$_l.faq}</h1>
+<p>
+{foreach from=$a_faq item=a_item}
+ <a href="{$a_item.url}" title="{$a_item.title}">{$a_item.title}</a><br/>
+{/foreach}
+</p>
+</div>
+
+<div class="description">
+{$a_page[$page].content}
+</div>
+{/strip}
+{include file="module_article_category_last.html"}

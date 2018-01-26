@@ -1,0 +1,7 @@
+<?php /* Smarty version 2.6.22, created on 2017-11-28 15:36:56
+         compiled from module_article.html */ ?>
+<?php echo ''; ?><?php $_from = $this->_tpl_vars['a_article']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['a_item']):
+?><?php echo '<div class="description"><h3><a href="'; ?><?php echo $this->_tpl_vars['a_item']['url']; ?><?php echo '" title="'; ?><?php echo $this->_tpl_vars['a_item']['fulltitle']; ?><?php echo '">'; ?><?php echo $this->_tpl_vars['a_item']['fulltitle']; ?><?php echo '</a></h2>'; ?><?php echo $this->_tpl_vars['a_item']['description']; ?><?php echo '<p class="post-footer align-right">'; ?><?php $_from = $this->_tpl_vars['a_item']['a_tag']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['str_tag']):
+?><?php echo ' <a href="'; ?><?php echo $this->_tpl_vars['a_item']['url']; ?><?php echo '" title="'; ?><?php echo $this->_tpl_vars['str_tag']; ?><?php echo '" class="readmore">'; ?><?php echo $this->_tpl_vars['str_tag']; ?><?php echo '</a>'; ?><?php endforeach; endif; unset($_from); ?><?php echo '</p></div>'; ?><?php endforeach; endif; unset($_from); ?><?php echo ''; ?>

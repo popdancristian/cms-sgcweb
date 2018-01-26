@@ -1,0 +1,6 @@
+{strip}
+{if (!empty($a_article_category_last))}
+	    {assign var="a_article" value="`$a_article_category_last`"}
+		{include file="module_article.html"}
+{/if}
+{/strip}

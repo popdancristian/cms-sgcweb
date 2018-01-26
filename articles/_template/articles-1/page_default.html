@@ -1,0 +1,8 @@
+<div class="description">
+<h1>{$a_page[$page].title}</h1>
+{$a_page[$page].content}
+</div>
+{assign var='navigator_title' value=`$a_page[$page].title`}
+{include file="module_navigator.html"}
+{include file="module_article.html"}
+{include file="module_navigator.html"}

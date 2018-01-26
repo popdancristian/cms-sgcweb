@@ -1,0 +1,11 @@
+{strip}
+{if (count($a_category)>0)}
+<div class="category">
+<ul>
+	{foreach from=$a_category key=i_key item=a_item}
+		<li><a href="{$a_item.url}" title="{$a_item.title} {$_CONFIG.title}"{if (isset($i_categoryid) and ($i_categoryid==$i_key))} class="current"{/if}>{$a_item.title}</a></li>
+	{/foreach}
+</ul>
+</div>
+{/if}
+{/strip}

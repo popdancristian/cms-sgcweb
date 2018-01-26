@@ -1,0 +1,21 @@
+<div class="description">
+<h1>{$search_keyword}</h1>
+{$a_page[$page].content|replace:'[category_title]':$search_keyword}
+<p class="post-footer align-right">{$search_keyword}</p>
+</div>
+{if (!empty($a_gallery_best))}
+<div class="description">
+ <h1>{$_l.gallery} {$a_category[$categoryid].fulltitle}</h1>
+{foreach from=$a_gallery_best item=a_image}
+ <div class="gallery"><a rel="pimage" href="{$a_image.imageurlb}" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$search_keyword}"><img src="{$a_image.imageurl}" width="130" height="97" border="0" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$search_keyword}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}" alt="{$_CONFIG.title} {$_CONFIG.title_separator} {$search_keyword}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}"/></a></div>
+{/foreach}
+<div class="clear"></div>
+<p class="post-footer align-right"><a href="{$a_category[$categoryid].url_gallery}" title="{$_l.gallery} {$a_category[$categoryid].fulltitle}">{$_l.gallery} {$a_category[$categoryid].title}</a></p>
+</div>
+{/if}
+{assign var="b_article_category" value="1"}
+{assign var='navigator_title' value=`$a_page[$page].title`}
+{include file="module_navigator.html"}
+{include file="module_article.html"}
+{include file="module_navigator.html"}
+<div class="description"><p>{$a_page[$page].header|replace:'[category_title]':$search_keyword}</p></div>

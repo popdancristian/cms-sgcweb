@@ -1,0 +1,5 @@
+{if (!empty($a_banner.center))}
+{foreach from=$a_banner.center item=a_item}
+	<a href="{$a_item.url}" title="{$a_item.title}" target="_blank" onclick="{literal}$.ajax({url: '{/literal}{$_DOMAIN.url}{literal}/index.php',data:'page=banner&amp;bannerid={/literal}{$a_item.bannerid}{literal}&amp;submit=1',success: function(responseText){},error: function(){}});{/literal}"><img src="{$a_item.image}" alt="{$a_item.title}" border="0"{if (isset($a_item.width))} width="{$a_item.width}"{/if}{if (isset($a_item.height))} height="{$a_item.height}"{/if}></a> 
+{/foreach}
+{/if}

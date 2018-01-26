@@ -1,0 +1,35 @@
+{include file="`$smarty.const.PATH_SMARTY_TEMPLATE`/header.html"}
+ <div id="wrap">
+	<div id="header">
+	  <div id="headerleft"><div class="address"></div><div class="contact"></div></div>
+	  <div id="headerright">{include file="`$_CONFIG.site_style`/module_slider.html"}</div>
+	 </div>
+	{include file="module_menu_top.html"}
+	<div class="clear"></div>
+	<div id="page">
+	    <div id="pageleft">
+		 <div class="leftheader"><h2>{$_l.categoriesarticles}</h2></div>
+		 {include file="module_category.html"}
+		 <div class="leftheader"><h2>{$_l.gallery}</h2></div>
+		 {include file="module_category_gallery.html"}
+		 {include file="module_link_left.html"}
+		
+		 <div class="leftheader"><h2>{$_l.faq}</h2></div>
+		 <div class="leftcontent">{include file="module_faq.html"}</div>
+		 <div class="leftheader"><h2>{$_l.bestkeywords}</h2></div>
+		 <div class="leftcontent">{include file="module_keyword_best.html"}</div>
+		</div>
+		<div id="pageright">{include file="`$include_template`"}<div class="description"><h2>Solutii la cheie in orice tipuri constructii din lemn: casute, case cabane si vile</h2></div></div>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">
+	  <div id="footerbody">
+	    <div id="footerleft"><a class="rss" href="{$_DOMAIN.url}/rss.xml" title="{$_CONFIG.title} RSS Feed"></a></div>
+		<div id="footerright">
+		 <p>{include file="module_menu_bottom.html"}</p>
+		 <p>{$_CONFIG.copyright} {$_CONFIG.title|upper} {$_CONFIG.title_separator} {$_CONFIG.motto}</p>
+	   </div>
+	</div>
+  </div>
+</div>
+{include file="`$smarty.const.PATH_SMARTY_TEMPLATE`/footer.html"}

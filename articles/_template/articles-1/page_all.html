@@ -1,0 +1,13 @@
+<div class="description">
+<h1>{$a_page[$page].menu}</h1>
+{$a_page[$page].content}
+</div>
+<div class="navigator">
+{foreach from=$a_letter_index key=str_key item=a_item}
+ <a href="{$a_item.url}" title="{$a_item.name}"{if ($str_letter==$str_key)} class="current"{/if}>&nbsp;{$a_item.name}&nbsp;</a> 
+{/foreach}
+</div>
+{assign var='navigator_title' value=`$a_page[$page].title`}
+{include file="module_navigator.html"}
+{include file="module_article.html"}
+{include file="module_navigator.html"}

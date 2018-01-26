@@ -1,0 +1,20 @@
+<form method="GET" action="index.php" name="">
+<input type="hidden" name="page" value="{$page}">
+<fieldset>
+<legend>{$_l.search}</legend>
+<table border="0" cellspacing="1" cellpadding="1">
+<tr>
+ <td>{$_l.name}:</td>
+ <td>
+  <input name="search[name]" value="{if (isset($a_search.name))}{$a_search.name}{/if}">
+ </td>
+ <td>{$_l.total}:</td>
+ <td>
+  ><input name="search[total]" value="{if (isset($a_search.total))}{$a_search.total}{/if}">
+ </td>
+ <td><button type="submit">{$_l.search}</button></td>
+</tr>
+</table>
+</fieldset>
+</form>
+{include file="grid.html"}

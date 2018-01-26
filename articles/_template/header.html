@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{if ($page=='home')}{$_CONFIG.motto} {$_CONFIG.title_separator} {$_CONFIG.title}{else}{$meta_title}{/if}</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="keywords" content="{$meta_keyword}" />
+<meta name="description" content="{$meta_description}" />
+<meta name="author" content="{$_DOMAIN.name}" />
+<meta name="copyright" content="Copyright {$_DOMAIN.name} 2012-2013. All rights reserved" />
+<meta name="publisher" content="{$_CONFIG.title}" />
+<meta name="generator" content="{$_CONFIG.title}" />
+<meta name="formatter" content="{$_CONFIG.title}" />
+<meta name="reply-to" content="{$_CONFIG.email}" />
+<meta name="email" content="{$_CONFIG.email}" />
+<meta name="audience" content="Global" />
+<meta name="distribution" content="Local" />
+<meta name="language" content="ro-RO" />
+<meta name="abstract" content="{$_CONFIG.title}" />
+<meta name="robots" content="index,follow" />
+<meta name="rating" content="{$_CONFIG.title}" />
+<meta name="classification" content="{$_CONFIG.title}" />
+<link rel="alternate" type="application/rss+xml"  href="{$_DOMAIN.url}/rss.xml" title="{$_CONFIG.title} RSS Feed" />
+{if (!empty($_CONFIG.google_verify))}
+<meta name="google-site-verification" content="{$_CONFIG.google_verify}" />
+{/if}
+{if (!empty($_CONFIG.yahoo_verify))}
+<meta name="y_key" content="{$_CONFIG.yahoo_verify}" />
+{/if}
+<link href="{$smarty.const.URL_SMARTY_TEMPLATE}/{$_CONFIG.site_template}/{$_CONFIG.site_style}/default.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="{$_DOMAIN.url}/favicon.ico" />
+<script type="text/javascript" src="{$smarty.const.URL_SITE}/_js/swfobject.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_SITE}/_js/jquery-1.5.1.js"></script>
+<link rel="stylesheet" href="{$smarty.const.URL_SITE}/_js/JQueryFancybox/fancybox/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript" src="{$smarty.const.URL_SITE}/_js/JQueryFancybox/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="{$smarty.const.URL_SITE}/_js/jquery.featureList-1.0.0.js"></script>
+
+{literal}<script type="text/javascript" src="{/literal}{$smarty.const.URL_SITE}{literal}/_js/functions.js"></script>{/literal}
+{if (!empty($b_include_raty))}
+{literal}<script type="text/javascript" src="{/literal}{$smarty.const.URL_SITE}{literal}/_js/jquery.raty.min.js"></script>{/literal}
+{/if}
+{literal}
+<script language="javascript" type="text/javascript">
+$(document).ready(function() 
+{
+			$("a[rel=pimage]").fancybox({
+				'transitionIn'	: 'elastic',
+				'transitionOut'	: 'elastic'
+			});
+
+			
+});
+</script>
+{/literal}
+{include file="`$smarty.const.PATH_SMARTY_TEMPLATE`/module_script_top.html"}
+</head>
+<body>

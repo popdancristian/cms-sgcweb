@@ -1,0 +1,19 @@
+<fieldset>
+<legend>{$_l.manage}</legend>
+<table border="0" align="center" bgcolor="#DDDDDD" cellspacing="1" cellpadding="1" width="100%">
+<tr><td class="th">File</td><td class="th">Status</td><td class="th">Google</td><td class="th" style="width:100px;">&nbsp;</td><td class="th"  style="width:150px;">&nbsp;</td></tr>
+{foreach from=$a_sitemap item=a_item}
+{if (empty($a_item))}
+<tr><td colspan="5">&nbsp;</td></tr>
+{else}
+<tr>
+ <td class="td"><a href="{$a_item.url}" target="_blank" class="link">{$a_item.file}</a></td>
+ <td class="td">{if ($a_item.b_found)}<span style="color:#009900"><b>OK</b></span>{else}<span style="color:#FF0000"><b>NOT FOUND</b></span>{/if}</td>
+ <td class="td">{if ($a_item.b_google)}<span style="color:#009900"><b>YES</b></span>{else}<span style="color:#FF0000"><b>NO</b></span>{/if}</td>
+ <td class="td" align="center"><a href="sitemap.php?page={$page}&categoryid={$a_item.categoryid}&file={$a_item.file}" class="link">{$_l.generate}</a></td>
+ <td class="td" align="center"><a href="google.php?page={$page}&categoryid={$a_item.categoryid}&file={$a_item.file}" class="link">Submit to Google</a></td>
+</tr>
+{/if}
+{/foreach}
+</table>
+</fieldset>

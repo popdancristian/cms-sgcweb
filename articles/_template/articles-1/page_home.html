@@ -1,0 +1,20 @@
+<div class="description">
+<h1>{$a_page[$page].menu}</h1>
+{$a_page[$page].content}
+</div>
+{foreach from=$a_category item=a_item}
+{if ($a_item.home == 1)}
+<div class="description">
+<h1>{$a_item.title}</h1>
+    {$a_item.header}
+	{if (!empty($a_gallery_home[$a_item.categoryid]))}
+	{foreach from=$a_gallery_home[$a_item.categoryid] item=a_image}
+	 <div class="gallery"><p align="center"><a rel="pimage" href="{$a_image.imageurlb}" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_item.title}"><img src="{$a_image.imageurl}" border="0" width="130" height="97" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_item.title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}" alt="{$_CONFIG.title} {$_CONFIG.title_separator} {$a_item.title}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}"/></a></p></div>
+	{/foreach}
+	{/if}
+	<div class="clear"></div>
+	<p class="post-footer align-right"><a href="{$smarty.const.URL_SITE}/_file/file/{$a_item.directory}.pdf" title="Oferta {$a_item.fulltitle}" target="_blank">Oferta {$a_item.title}</a> &nbsp; <a href="{$a_item.url_gallery}" title="{$_l.gallery} {$_CONFIG.title_separator} {$a_item.fulltitle}">{$_l.gallery} {$a_item.title}</a></p>
+</div>
+{/if}
+{/foreach}
+<div class="description"><p>{$a_page[$page].footer}</p></div>

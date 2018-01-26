@@ -1,0 +1,44 @@
+<br>
+<table border="0" align="center" bgcolor="#DDDDDD" cellspacing="1" cellpadding="5" width="100%">
+  {assign var="i" value=0 }
+    {foreach from=$_MODULE item=str_item}
+	{assign var="i" value=$i+1}
+	 {if ($i%9) == 1 }<tr>{/if}
+      <td align="center" width="10%" class="td"><a href="index.php?page={$str_item}"><img src="{$smarty.const.URL_SMARTY_TEMPLATE}/images/{$str_item}.gif" width="55" height="41" border="0"><br/>{$_l[$str_item]}</a></td>
+	 {if ($i%9) != 0 && $_MODULE|@count == $i}</tr>{/if}
+  {/foreach}
+</table>
+<br/>
+<fieldset>
+<legend>{$_l.statistics}</legend>
+<table border="0" align="center" bgcolor="#DDDDDD" cellspacing="1" cellpadding="5" width="100%">
+<tr>
+ <td class="th" align="center">{$_l.domain}</td>
+ <td class="th" align="center">{$_l.page}</td>
+ <td class="th" align="center">{$_l.category}</td>
+ <td class="th" align="center">{$_l.article}</td>
+ <td class="th" align="center">{$_l.link}</td>
+ <td class="th" align="center">{$_l.banner}</td>
+ <td class="th" align="center">{$_l.keyword}</td>
+ <td class="th" align="center">{$_l.tag}</td>
+ <td class="th" align="center">{$_l.adsense}</td>
+ <td class="th" align="center">{$_l.script}</td>
+ <td class="th" align="center">{$_l.comment}</td>
+</tr>
+{foreach from=$a_domain key=i_key item=a_item}
+ <tr>
+	<td class="td"><a href="{$a_item.url}" target="_blank" class="link">{$a_item.name}</a></td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].page_count}/{$a_stat.page_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].category_count}/{$a_stat.category_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].article_count}/{$a_stat.article_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].link_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].banner_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].keyword_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].tag_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].adsense_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].script_count}</td>
+	<td class="td" align="center">{$a_domain_stat[$i_key].comment_count}</td>
+ </tr>
+{/foreach}
+</table>
+</fieldset>

@@ -1,0 +1,20 @@
+<form method="GET" action="index.php" name="">
+<input type="hidden" name="page" value="{$page}">
+<fieldset>
+<legend>{$_l.search}</legend>
+<table border="0" cellspacing="1" cellpadding="1">
+<tr>
+ <td>{$_l.active}:</td>
+ <td>
+  <select name="search[active]" id="active">
+   <option value="" {if (!isset($a_search.active))} selected="selected"{/if}>All</option>
+   <option value="0" {if (isset($a_search.active) and (0 == $a_search.active))} selected="selected"{/if}>No</option>
+   <option value="1" {if (isset($a_search.active) and (1 == $a_search.active))} selected="selected"{/if}>Yes</option>
+  </select>
+ </td>
+ <td><button type="submit">{$_l.search}</button></td>
+</tr>
+</table>
+</fieldset>
+</form>
+{include file="grid.html"}

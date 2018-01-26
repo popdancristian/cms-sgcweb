@@ -1,0 +1,3 @@
+{strip}
+{foreach from=$a_page item=a_item}{if (in_array('bottom',$a_item.a_menu))} <a href="{$a_item.url}" title="{$a_item.menu}" class="link">{$a_item.menu}</a> &nbsp; {/if}{/foreach}
+{/strip}

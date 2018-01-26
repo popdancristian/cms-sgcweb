@@ -1,0 +1,18 @@
+<div class="description">
+<h1>{$meta_title}</h1>
+{if empty($a_faqq)}
+{foreach from=$a_faqqs item=a_item}
+    <h3><a href="{$a_item.url}" title="{$a_item.title}">{$a_item.title}</a></h3>
+{/foreach}
+{else}
+{$a_faqq.content}
+<p class="post-footer align-right">{foreach from=$a_faqq.a_tag item=str_tag} {$str_tag} {/foreach}</p>
+{/if}
+{if (!empty($a_gallery_best))}
+{foreach from=$a_gallery_best item=a_image}
+ <div class="gallery"><a rel="pimage" href="{$a_image.imageurlb}" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$search_keyword}"><img src="{$a_image.imageurl}" border="0" width="130" height="97" title="{$_CONFIG.title} {$_CONFIG.title_separator} {$search_keyword}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}" alt="{$_CONFIG.title} {$_CONFIG.title_separator} {$search_keyword}{if (!empty($a_image.title))} {$_CONFIG.title_separator} {$a_image.title}{/if}"/></a></div>
+{/foreach}
+<div class="clear"></div>
+<p class="post-footer align-right"><a href="{$a_category[$categoryid].url_gallery}" title="{$_l.gallery} {$a_category[$categoryid].fulltitle}" class="details">{$_l.gallery} {$a_category[$categoryid].title}</a></p>
+{/if}
+</div>

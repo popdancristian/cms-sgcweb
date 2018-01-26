@@ -1,0 +1,9 @@
+{strip}
+{foreach from=$a_article item=a_item}
+<div class="description">
+    <h3><a href="{$a_item.url}" title="{$a_item.fulltitle}">{$a_item.fulltitle}</a></h2>
+      {$a_item.description}
+	  <p class="post-footer align-right">{foreach from=$a_item.a_tag item=str_tag} <a href="{$a_item.url}" title="{$str_tag}" class="readmore">{$str_tag}</a>{/foreach}</p>
+</div>
+{/foreach}
+{/strip}

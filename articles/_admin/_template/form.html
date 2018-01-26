@@ -1,0 +1,74 @@
+<fieldset>
+<legend>{$a_form.title}</legend>
+<form method="POST" action="{if (empty($a_form.actionscript))}index.php{else}{$a_form.actionscript}{/if}" name="{$a_form.name}">
+<input type="hidden" name="submit" value="1">
+<input type="hidden" name="page" value="{$page}">
+<input type="hidden" name="action" value="{$a_form.action}">
+<input type="hidden" name="{$a_form.id}" value="{$a_form.data[$a_form.id]}">
+{if (!empty($a_form.hidden))}
+ {foreach from=$a_form.hidden key=str_hidden_key item=a_hidden}
+<input type="hidden" name="{$a_hidden.name}" value="{$a_hidden.value}">
+ {/foreach}
+{/if}
+{if (!empty($a_search))}
+{foreach from=$a_search key=str_search_key item=str_search_value}
+<input type="hidden" name="search[{$str_search_key}]" value="{$str_search_value}">
+{/foreach}
+{/if}
+<table border="0" align="center" bgcolor="#DDDDDD" cellspacing="1" cellpadding="1" width="100%">
+{foreach from=$a_form.row key=str_key item=a_row}
+ <tr>
+ {if ($a_row.type=='textbox')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td"><input type="text" name="{$str_key}" id="{$str_key}" style="width:{if (!empty($a_row.width))}{$a_row.width}{else}400{/if}px;" value="{$a_form.data[$str_key]}">
+ {elseif ($a_row.type=='password')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td"><input type="password" name="{$str_key}" id="{$str_key}" style="width:{if (!empty($a_row.width))}{$a_row.width}{else}400{/if}px;" value="">
+ {elseif ($a_row.type=='textarea')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td"><textarea name="{$str_key}" id="{$str_key}" style="width:{if (!empty($a_row.width))}{$a_row.width}{else}400{/if}px;height:{if (!empty($a_row.height))}{$a_row.height}{else}70{/if}px;" onkeyup="showNrChar('{$str_key}','{$str_key}_chars')" onmouseup="showNrChar('{$str_key}','{$str_key}_chars')">{$a_form.data[$str_key]}</textarea>&nbsp;(<span id="{$str_key}_chars"><b>{$a_form.data[$str_key]|@count_characters:true}</b></span>)&nbsp;
+ {elseif ($a_row.type=='radio')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td">
+   {foreach from=$a_row.a_value key=str_value item=str_caption}<input type="radio" name="{$str_key}" value="{$str_value}"{if ($a_form.data[$str_key]==$str_value)} checked="checked"{/if}>{$str_caption}{/foreach}
+ {elseif ($a_row.type=='checkbox')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td">
+   {foreach from=$a_row.a_value key=str_value item=str_caption}<input type="checkbox" name="{$str_key}[]" value="{$str_value}"{if (in_array($str_value,$a_form.data[$str_key]))} checked="checked"{/if}>{$str_caption}{/foreach}
+{elseif ($a_row.type=='select')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td">
+   <select name="{$str_key}" id="{$str_key}"> 
+   {foreach from=$a_row.a_value key=str_value item=str_caption}<option value="{$str_value}"{if ($a_form.data[$str_key]==$str_value)} selected="selected"{/if}>{$str_caption}</option>{/foreach}
+   </select>
+{elseif ($a_row.type=='date')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td"><input type="text" value="{$a_form.data[$str_key]}" readonly name="{$str_key}"><input type="button" value="..." onclick="displayCalendar(document.forms[0].{$str_key},'yyyy-mm-dd',this)"></td>
+{elseif ($a_row.type=='text')}
+  <td class="th">{$a_row.caption}:</td>
+  <td class="td">{$a_form.data[$str_key]}
+{elseif ($a_row.type=='editor')}
+  <td class="td" colspan="2"><div class="th" style="padding: 2px;">{$a_row.caption}:</div>{$a_row.editor}
+{elseif ($a_row.type=='section')}
+  <td class="ts" colspan="2">{$a_row.caption}	
+{/if}
+{if (!empty($a_row.tips))}<span class="tips">({$a_row.tips})</span>{/if}
+ </td>
+ </tr>
+{/foreach}
+</table>
+<div style="padding-top: 5px;"><button type="submit">{$a_form.button}</button></div>
+</form>
+</fieldset>
+<script language="javascript">
+<!--//
+// initialize the qForm object
+objForm = new qForm("{$a_form.name}");
+// make these fields required
+{foreach from=$a_form.row key=str_key item=a_row}
+{if (!empty($a_row.required))}
+ objForm.required("{$str_key}");
+{/if}
+{/foreach}
+//-->
+</script>

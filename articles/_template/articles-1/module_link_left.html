@@ -1,0 +1,10 @@
+{if (!empty($a_elink.left))}
+<div class="leftheader"><h2>{$_l.partners}</h2></div>
+<div class="category">
+<ul>
+	{foreach from=$a_elink.left item=a_item}
+		<li><a href="{$a_item.url}" title="{$a_item.title} - {$a_item.url}" target="_blank" onclick="{literal}$.ajax({url: '{/literal}{$_DOMAIN.url}{literal}/index.php',data:'page=link&amp;linkid={/literal}{$a_item.linkid}{literal}&amp;submit=1',success: function(responseText){},error: function(){}});{/literal}">{$a_item.title}</a></li>
+	{/foreach}
+</ul>
+</div>
+{/if}

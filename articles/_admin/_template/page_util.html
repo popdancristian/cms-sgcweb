@@ -1,0 +1,60 @@
+{assign var="a_form" value="`$a_form_category`"}
+{include file="form.html"}
+{if ($i_total_category>0)}
+{assign var="a_form" value="`$a_form_category_article`"}
+{include file="form.html"}
+{assign var="a_form" value="`$a_form_article`"}
+{include file="form.html"}
+{/if}
+<fieldset>
+<legend>{$_l.tag}</legend>
+<table border="0" cellspacing="3" cellpadding="3">
+<tr>
+ <td><a href="tag.php?action=new" class="action" target="_blank">Generate New</a></td>
+ <td><a href="tag.php?action=all" class="action" target="_blank">Re-Generate All</a></td>
+</tr>
+</table>
+</fieldset>
+<fieldset>
+<legend>{$_l.sitemap}</legend>
+<table border="0" cellspacing="3" cellpadding="3">
+<tr>
+<td><a href="sitemap.php?action=new" class="action" target="_blank">Generate New</a></td>
+<td><a href="sitemap.php?action=all" class="action" target="_blank">Re-Generate All</a></td>
+<td><a href="google.php?action=new" class="action" target="_blank">Submit to Google New</a></td>
+<td><a href="google.php?action=all" class="action" target="_blank">Re-Submit to Google All</a></td>
+</tr>
+</table>
+</fieldset>
+<fieldset>
+<legend>RSS</legend>
+<table border="0" cellspacing="3" cellpadding="3">
+<tr>
+ <td><a href="rss.php" class="action" target="_blank">Generate</a></td>
+</tr>
+</table>
+</fieldset>
+<fieldset>
+<legend>Cache</legend>
+<table border="0" cellspacing="3" cellpadding="3">
+<tr>
+ <td><a href="cache.php" class="action" target="_blank">Generate</a></td>
+</tr>
+</table>
+</fieldset>
+<fieldset>
+<legend>Gallery</legend>
+<table border="0" cellspacing="3" cellpadding="3">
+<tr>
+ <td><a href="gallery.php" class="action" target="_blank">Generate</a></td>
+</tr>
+</table>
+</fieldset>
+<fieldset>
+<legend>Keyword & Tags</legend>
+<table border="0" cellspacing="3" cellpadding="3">
+<tr>
+ <td><a href="keyword.php" class="action" target="_blank">Keyword & Tags</a></td>
+</tr>
+</table>
+</fieldset>

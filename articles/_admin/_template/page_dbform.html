@@ -1,0 +1,9 @@
+<table cellspacing="5" cellpadding="5" style="font-size:14px;">
+<tr>
+	<td>{if ($table=='page')}<b>{$_l.page}</b>{else}<a href="index.php?page={$page}&table=page" class="link"><b>{$_l.page}</b></a>{/if}</td>
+	<td>{if ($table=='category')}<b>{$_l.category}</b>{else}<a href="index.php?page={$page}&table=category" class="link"><b>{$_l.category}</b></a>{/if}</td>
+	<td>{if ($table=='article')}<b>{$_l.article}</b>{else}<a href="index.php?page={$page}&table=article" class="link"><b>{$_l.article}</b></a>{/if}</td>
+</tr>
+</table>
+{include file="grid.html"}
+<p><a href="index.php?page={$page}&table={$table}&action=addmod" class="action">Add</a>

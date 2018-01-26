@@ -1,0 +1,95 @@
+{strip}
+<fieldset>
+<legend>{$a_grid.title}</legend>
+{if (empty($a_grid.data))}
+<center>{$_l.noentries}</center>
+{else}
+<form method="POST" action="index.php" name="{$a_grid.name}">
+<input type="hidden" name="submit" value="1">
+<input type="hidden" name="page" value="{$page}">
+<input type="hidden" name="action" value="{$a_grid.action}">
+{if (!empty($a_grid.a_hidden))}
+{foreach from=$a_grid.a_hidden key=str_search_key item=str_search_value}<input type="hidden" name="{$str_search_key}" value="{$str_search_value}">{/foreach}
+{/if}
+{if (!empty($a_search))}
+{foreach from=$a_search key=str_search_key item=str_search_value}<input type="hidden" name="search[{$str_search_key}]" value="{$str_search_value}">{/foreach}
+{/if}
+<table border="0" align="center" bgcolor="#DDDDDD" cellspacing="1" cellpadding="1" width="100%">
+<tr>
+ {foreach from=$a_grid.column key=i_column item=a_column}
+  <td class="th"{if (!empty($a_column.th))}{foreach from=$a_column.th key=str_style_name item=str_style_value} {$str_style_name}="{$str_style_value}";{/foreach}{/if}>
+  {if (!empty($a_column.ordon))}
+    {if ($a_grid.order.field == $a_column.field)}
+	<a href="{$a_grid.order_link}&search[_orderby_]={$a_column.field}|{if ($a_grid.order.type=='asc')}desc{else}asc{/if}" class="link_th">{$a_column.caption}<img src="{$smarty.const.URL_SMARTY_TEMPLATE}/images/{$a_grid.order.type}.gif" border="0"></a>
+	{else}<a href="{$a_grid.order_link}&search[_orderby_]={$a_column.field}|asc" class="link_th">{$a_column.caption}<img src="{$smarty.const.URL_SMARTY_TEMPLATE}/images/noorder.gif" border="0"></a>{/if}
+  {else}{$a_column.caption}{/if}
+  </td>
+ {/foreach}
+</tr>
+{assign var='nr' value='0'}
+{foreach from=$a_grid.data key=i_key item=a_data}  
+  <tr onmouseover="setPointer(this, {$nr}, 'over', '#FFFFFF', '#FFF773', '#FFCC99');" onmouseout="setPointer(this, {$nr}, 'out', '#FFFFFF', '#FFF773', '#FFCC99');" onmousedown="setPointer(this, {$nr}, 'click', '#FFFFFF', '#FFF773', '#FFCC99');">
+  {assign var='nr' value=`$nr+1`}
+  {foreach from=$a_grid.column item=a_column} 
+
+   <td bgcolor="#FFFFFF"{if (!empty($a_column.td))}{foreach from=$a_column.td key=str_style_name item=str_style_value} {$str_style_name}="{$str_style_value}";{/foreach}{/if} title="{if (!empty($a_column.field) and ($a_column.type != 'editor') )}{$a_data[$a_column.field]}{else}{$a_column.name}{/if}">
+
+   {if $a_column.type == 'text'}{$a_data[$a_column.field]}
+   {elseif $a_column.type == 'value'}{$a_value[$a_column.field][$i_key]}
+   {elseif $a_column.type == 'image'}<img src="{$smarty.const.URL_SMARTY_TEMPLATE}/images/{if (!empty($a_column.param.dir))}{$a_column.param.dir}/{/if}{$a_data[$a_column.field]}.gif" {if (!empty($a_column.param.style))}style="{$a_column.param.style}" {/if}border="0" alt="$_l[$a_data[$a_column.field]]">
+   {elseif $a_column.type == 'imagegallery'}<img src="{$str_url}/image/{$a_data.category_directory}/{$a_data[$a_column.field]}.jpg" {if (!empty($a_column.param.style))}style="{$a_column.param.style}" {else}style="width:80px;height:50xp;" {/if}border="0" alt="{$a_data[$a_column.field]}">
+   
+   {elseif $a_column.type == 'link'}
+    {if (!empty($a_column.field))}
+      <a href="index.php?page={$page}&action={$a_column.action}&{$a_grid.id}={$a_data[$a_grid.id]}{if (!empty($a_column.param))}{foreach from=$a_column.param key=str_param_name item=str_param_value}&{$str_param_name}={$str_param_value}{/foreach}{/if}{if (!empty($str_search_param))}{$str_search_param}{/if}" class="link">{$a_data[$a_column.field]}</a>
+	{else}
+	  {if (empty($a_column.defaultid) OR ($a_data[$a_grid.id]!=$a_column.defaultid))}
+	  <a href="index.php?page={$page}&action={$a_column.action}&{$a_grid.id}={$a_data[$a_grid.id]}{if (!empty($a_column.param))}{foreach from=$a_column.param key=str_param_name item=str_param_value}&{$str_param_name}={$str_param_value}{/foreach}{/if}{if (!empty($str_search_param))}{$str_search_param}{/if}" class="link"{if (!empty($a_column.onclick))} onclick="{$a_column.onclick}"{/if}>{$a_column.name}</a>
+	  {else}&nbsp;{/if}
+	{/if}
+   {elseif $a_column.type == 'checkbox'}
+    {if (empty($a_column.defaultid) OR ($a_data[$a_grid.id]!=$a_column.defaultid))}
+	 {if (!empty($a_column.field))}
+      <input type="checkbox" value="{$a_data[$a_grid.id]}" name="{$a_column.field}[]"{if $a_data[$a_column.field]=='1'} checked="checked"{/if}>
+     {else}
+	  <input type="checkbox" value="{$a_data[$a_grid.id]}" name="{$a_column.name}[]">
+     {/if}
+    {else}<input type="checkbox" checked="checked" disabled="disabled">{/if}
+   {elseif $a_column.type == 'textbox'}
+     <input type="text" value="{$a_data[$a_column.field]}" name="{$a_column.field}[]"{if (!empty($a_column.textbox))}{foreach from=$a_column.textbox key=str_style_name item=str_style_value} {$str_style_name}="{$str_style_value}";{/foreach}{else} style="width:200px;"{/if}>
+   {elseif $a_column.type == 'editor'}<div style="width:500px;height:50px;overflow-y: scroll;">{$a_data[$a_column.field]}</div>
+   {/if}
+  {/foreach}
+  <input type="hidden" value="{$a_data[$a_grid.id]}" name="{$a_grid.id}[]"></td>
+ </tr>
+{/foreach}
+<tr>
+ {foreach from=$a_grid.column item=a_column}
+  {if ( ($a_column.type == 'text') and (!empty($a_column.action)) )}
+    <td class="th"{if (!empty($a_column.align))} align="{$a_column.action}"{/if}><button type="submit" style="width:60px;" onclick="document.{$a_grid.name}.action.value='result';">{$_l.update}</button></td> 
+  {elseif ($a_column.type == 'checkbox')}
+   <td class="th"{if (!empty($a_column.align))} align="{$a_column.align}"{/if}><button type="submit" style="width:60px;" onclick="document.{$a_grid.name}.action.value='{$a_column.action}';">{$_l.update}</button></td> 
+  {elseif ($a_column.type == 'textbox')}
+   <td class="th"{if (!empty($a_column.align))} align="{$a_column.align}"{/if}><button type="submit" style="width:60px;" onclick="document.{$a_grid.name}.action.value='{$a_column.action}';">{$_l.update}</button></td>
+  {else}
+	<td class="th">&nbsp;</td>
+  {/if}
+ {/foreach}
+</tr>
+</table>
+</form>
+{/if}
+{* begin navigator *}
+<div id="navigator">
+Total: {$a_grid.count}&nbsp;
+{if (!empty($a_grid.a_navigator))}
+{$_l.page}: {foreach from=$a_grid.a_navigator item=a_item}
+ {if ($a_grid.start==$a_item.title)}<a href="{$a_item.url}" title="{$a_item.title}" class="current">&nbsp;{$a_item.title}&nbsp;</a>
+ {else}<a href="{$a_item.url}" title="{$a_item.title}">&nbsp;{$a_item.title}&nbsp;</a>
+ {/if}
+{/foreach}
+{/if}
+</div>
+{* end navigator *}
+</fieldset>
+{/strip}

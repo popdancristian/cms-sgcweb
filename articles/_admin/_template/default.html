@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>{$a_domain[$smarty.session.domainid].name} {$html_title}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{$smarty.const.URL_SMARTY_TEMPLATE}/default.css" rel="stylesheet" type="text/css" />
+{if ( !empty($a_form) or !empty($a_form_add) )}
+<script src="{$smarty.const.URL_SITE}/_class/qforms/lib/qforms.js"></script>
+<script language="javascript">
+<!--//
+// set the path to the qForms directory
+qFormAPI.setLibraryPath("{$smarty.const.URL_SITE}/_class/qforms/lib");
+// this loads all the default libraries
+qFormAPI.include("*");
+//-->
+</script>
+{/if}
+<script src="{$smarty.const.URL_SITE}/_js/functions.js"></script>
+{if (!empty($b_calendar))}
+<link type="text/css" rel="stylesheet" href="{$smarty.const.URL_SITE}/_class/calendar/dhtmlgoodies_calendar/dhtmlgoodies_calendar.css?random=20051112" media="screen"></link>
+<script type="text/javascript" src="{$smarty.const.URL_SITE}/_class/calendar/dhtmlgoodies_calendar/dhtmlgoodies_calendar.js?random=20060118"></script>
+{/if}
+</head>
+<body>
+<table width="100%">
+<tr>
+ <td id="menu" valign="top">
+ <div>
+   <select style="width:100%;" name="domainid" onchange="document.location.href='index.php?page=domain&oldpage={$page}&action=change&submit=1&new_domainid='+this[selectedIndex].value">{foreach from=$a_domain item=a_item}<option value="{$a_item.domainid}" {if ($smarty.session.domainid == $a_item.domainid)}selected="selected"{/if}>{$a_item.name}</option>{/foreach}</select>
+ </div>
+ <ul>
+    <li><a href="index.php">{$_l.home}</a></li>
+    {foreach from=$_MODULE item=str_item}
+      <li{if ($page==$str_item)} class="current_page_item"{/if}><a href="index.php?page={$str_item}">{$_l[$str_item]}</a></li>
+	{/foreach}
+	<li><a href="index.php?page=login&action=logout&submit=1">{$_l.logout}</a></li>
+ </ul>
+ <center>
+ {if (isset($success))}
+	{if ($success)}<img src="{$smarty.const.URL_SMARTY_TEMPLATE}/images/success.gif">
+	{else}<img src="{$smarty.const.URL_SMARTY_TEMPLATE}/images/error.gif">{/if}
+ {/if}
+ </center>
+ </td>
+ <td id="content" valign="top">
+  <a href="{$a_domain[$smarty.session.domainid].url}" target="_blank"><h3>{$a_domain[$smarty.session.domainid].name}</h3></a><br/>
+  <div id="a_path"><a href="index.php?page={$page}{if (!empty($str_search_param))}{$str_search_param}{/if}">{$str_page_title}</a></div>
+  {include file="`$include_template`"}	
+ </td>
+</tr>
+</table>
+<!-- end footer -->
+</body>
+</html>

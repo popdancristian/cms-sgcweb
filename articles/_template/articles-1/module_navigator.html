@@ -1,0 +1,12 @@
+{* begin navigator *}
+{if (!empty($a_navigator))}
+<div class="navigator">
+ {foreach from=$a_navigator key=i_key item=a_item}
+ {if ($a_item.url=='#')}<a href="{$a_item.url}" title="{$navigator_title}" class="disable">&nbsp;{$a_item.title}&nbsp;</a>
+ {elseif ($start==$a_item.title)}<a href="{$a_item.url}" title="{$navigator_title} {$_l.page} {$a_item.title}" class="current">&nbsp;{$a_item.title}&nbsp;</a>
+ {else}<a href="{$a_item.url}" title="{$navigator_title} {$_l.page} {$a_item.title}">&nbsp;{$a_item.title}&nbsp;</a>
+ {/if}
+{/foreach}
+</div>
+{/if}
+{* end navigator *}

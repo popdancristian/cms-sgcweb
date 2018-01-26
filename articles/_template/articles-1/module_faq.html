@@ -1,0 +1,5 @@
+{strip}
+{foreach from=$a_faq item=a_item}
+{if ($a_item.home==1)}<a href="{$a_item.url}" title="{$a_item.title}">{$a_item.title}</a><br/>{/if}
+{/foreach}
+{/strip}

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>{$html_title}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{$smarty.const.URL_SMARTY_TEMPLATE}/default.css" rel="stylesheet" type="text/css" />
+{if (!empty($a_form))}
+<script src="{$smarty.const.URL_SITE}/_class/qforms/lib/qforms.js"></script>
+<script language="javascript">
+<!--//
+// set the path to the qForms directory
+qFormAPI.setLibraryPath("{$smarty.const.URL_SITE}/_class/qforms/lib");
+// this loads all the default libraries
+qFormAPI.include("*");
+//-->
+</script>
+{/if}
+</head>
+<body style="padding-top:20px;">
+<table width="300" align="center" border="0">
+<tr><td>{include file="form.html"}</td></tr>
+</table>
+</body>
+</html>
